@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+<script src="https://kit.fontawesome.com/a1a9666a37.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="p-3 mb-2 bg-dark text-white">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <ul class="navbar-nav ml-auto">
+    <% if user_signed_in? %>
+      <%= link_to user_path(current_user.id) do %>
+        <i class="fas fa-home-lg text-white"></i>
+        <nbr class="text-white">Home</nbr>
+        <% end %>
+      <li class="nav-item">
+        <%= link_to users_path do %>
+        <i class="fas fa-users text-white"></i>
+        <nbr class="text-white">Users</nbr>
+      <% end %>
+      <li class="nav-item">
+        <%= link_to books_path do %>
+        <i class="fas fa-book-open text-white"></i>
+        <nbr class="text-white">Books</nbr>
+        <% end %>
+      <li class="nav-item">
+        <%= link_to destroy_user_session_path, method: :delete do %>
+        <i class="fas fa-sign-out-alt text-white"></i>
+        <nbr class="text-white">Log out</nbr>
+      <% end %>
+    <% else %>
+    <li class="nav-item">
+        <%= link_to root_path do %>
+        <i class="fas fa-home-lg  text-white"></i>
+        <nbr class="text-white">Home</nbr>
+        <% end %>
+        </li>
+      <li class="nav-item">
+        <%= link_to about_path do%>
+        <i class="fas fa-link text-white"></i>
+        <nbr class="text-white">About</nbr>
+        <% end %>
+        </li>
+
+       <li class="nav-item">
+        <%= link_to new_user_registration_path do %>
+        <i class="fas fa-user-plus text-white"></i>
+        <nbr class="text-white">sin up</nbr>
+        <% end %>
+
+      </li>
+       <li class="nav-item">
+        <%= link_to new_user_session_path do %>
+        <i class="fas fa-sign-in-alt text-white"></i>
+        <nbr class="text-white">Log in</nbr>
+    <% end %>
+    <% end %>
+    </ul>
+  </header>
+  <main>
+    <%= yield %>
+    </main>
+    <footer>
+      <div class="mx-auto">
+      <p>CopyRight Infratop.inc</p>
+      </div>
+    </footer>
+  </body>
+</html>
